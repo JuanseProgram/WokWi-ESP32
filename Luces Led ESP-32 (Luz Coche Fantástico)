@@ -1,0 +1,299 @@
+from machine import Pin
+import utime
+
+led1 = Pin(23,Pin.OUT)
+led2 = Pin(22,Pin.OUT)
+led3 = Pin(3,Pin.OUT)
+led4 = Pin(19,Pin.OUT)
+led5 = Pin(5,Pin.OUT)
+led6 = Pin(16,Pin.OUT)
+led7 = Pin(2,Pin.OUT)
+led8 = Pin(15,Pin.OUT)
+led9 = Pin(13,Pin.OUT)
+led10 = Pin(12,Pin.OUT)
+led11 = Pin(14,Pin.OUT)
+led12 = Pin(27,Pin.OUT)
+
+todos = [led1,led2,led3,led4,led5,led6,led7,led8,led9,led10,led11,led12]
+ledsFinales = [led1,led2,led3,led5,led6,led7,led8,led9,led10]
+ledsInicio = [led3,led4,led5,led6,led7,led8,led9,led10,led11,led12]
+ledsExterno = [led1, led12, led2, led11, led3, led10, led4, led9, led5, led8, led6, led7]
+ledsInterno = [led7, led6, led8, led5, led9, led4, led10, led3, led11, led2, led12, led1]
+mitadInicial = [led1,led2,led3,led4,led5,led6]
+mitadFinal = [led7,led8,led9,led10,led11,led12]
+
+led_fijo12 = led12
+led_fijo11 = led11
+led_fijo1 = led1
+led_fijo2 = led2
+
+pausa_intermitencia = 0.6
+pausa_parejas = 0.1
+pausa_parejas_ext = 0.25
+pausa_parejas_rap = 0.1
+pausa = 0.025
+pausa_rapida = 0.017
+pausa_parpadear = 0.009
+
+def secuenciaLeds():
+  for j in range (7):
+    for i in todos:
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+    for i in reversed (todos):
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+  for j in range (5):
+    for i in todos:
+      i.value(1)
+      utime.sleep(pausa_rapida)
+      i.value(0)
+      utime.sleep(pausa_rapida)
+    for i in reversed (todos):
+      i.value(1)
+      utime.sleep(pausa_rapida)
+      i.value(0)
+      utime.sleep(pausa_rapida)
+  for i in todos:
+    i.value(1)
+    utime.sleep(pausa_rapida)
+    i.value(0)
+    utime.sleep(pausa_rapida)
+  for j in range (6):
+    led_fijo11.value(1)
+    led_fijo12.value(1)
+    for i in reversed (ledsFinales):
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+  for j in range (4):
+    led_fijo1.value(1)
+    led_fijo2.value(1)
+    for i in ledsInicio:
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+  for j in range (6):
+    led_fijo11.value(1)
+    led_fijo12.value(1)
+    for i in reversed (ledsFinales):
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+    led_fijo11.value(0)
+    led_fijo12.value(0)
+  for j in range (1):
+    led_fijo1.value(1)
+    led_fijo2.value(1)
+    for i in ledsInicio:
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+  for j in range (5):
+    led_fijo11.value(1)
+    led_fijo12.value(1)
+    for i in reversed (ledsFinales):
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+  for j in range (3):
+    led_fijo11.value(1)
+    led_fijo12.value(1)
+    for i in reversed (ledsFinales):
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+    led_fijo11.value(0)
+    led_fijo12.value(0)
+  #Parpadear mitades
+  for j in range (8):
+    for i in mitadInicial:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadFinal:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadInicial:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadFinal:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadInicial:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadFinal:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadInicial:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadFinal:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadInicial:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadFinal:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  for j in range (8):
+    for i in mitadInicial:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  #De dos en dos de extremos al centro
+  for x in range(6):
+    todos[x].value(1) 
+    todos[x+1]. value(1)
+    todos[-x-1].value(1) 
+    todos[-x-2].value(1)
+    utime.sleep(pausa_parejas_ext) 
+    todos[x].value(0)
+    todos[x+1]. value(0) 
+    todos[-x-1].value(0)
+    todos[-x-2].value(0)
+    utime.sleep(pausa_parejas_ext)
+  #parpadear todos
+  for j in range (2):
+    for i in todos:
+      i.value(1)
+      utime.sleep(pausa_parpadear)
+      i.value(0)
+      utime.sleep(pausa_parpadear)
+  #De dos en dos de extremos al centro
+  for x in range(4):
+    todos[x].value(1) 
+    todos[x+1]. value(1)
+    todos[-x-1].value(1) 
+    todos[-x-2].value(1)
+    utime.sleep(pausa_parejas_ext) 
+    todos[x].value(0)
+    todos[x+1]. value(0) 
+    todos[-x-1].value(0)
+    todos[-x-2].value(0)
+    utime.sleep(pausa_parejas_ext)
+  #devolverse 
+  for j in range (4):
+    for x in range(5,-1,-1):
+      todos[x].value(1)
+      todos[x+1]. value(1)
+      todos[-x-1].value(1)
+      todos[-x-2].value(1)
+      utime.sleep(pausa_parejas_rap) 
+      todos[x].value(0)
+      todos[x+1]. value(0) 
+      todos[-x-1].value(0)
+      todos[-x-2].value(0)
+      utime.sleep(pausa_parejas_rap)
+  #De dos en dos de extremos al centro
+  for j in range (6):
+    for x in range(6):
+      todos[x].value(1) 
+      todos[x+1]. value(1)
+      todos[-x-1].value(1) 
+      todos[-x-2].value(1)
+      utime.sleep(pausa_parejas_rap) 
+      todos[x].value(0)
+      todos[x+1]. value(0) 
+      todos[-x-1].value(0)
+      todos[-x-2].value(0)
+      utime.sleep(pausa_parejas_rap)
+  #Mantener todas las leds encendidas
+  for j in range (8):
+    for i in todos:
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(1)
+      utime.sleep(pausa)
+  #prender y apaga todas al mismo tiempo
+  for j in range (3):
+    for x in range(6):
+      todos[x].value(1) 
+      todos[x+1]. value(1)
+      todos[-x-1].value(1) 
+      todos[-x-2].value(1)
+      utime.sleep(pausa_parejas_ext) 
+      todos[x].value(1)
+      todos[x+1]. value(1) 
+      todos[-x-1].value(1)
+      todos[-x-2].value(1)
+      utime.sleep(pausa_parejas_ext)
+      todos[x].value(0)
+      todos[x+1]. value(0) 
+      todos[-x-1].value(0)
+      todos[-x-2].value(0)
+      utime.sleep(pausa_parejas_ext)
+  #De centro a extremos y viceversa seguidos
+  for j in range (5):
+    for i in ledsExterno:
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+    for i in ledsInterno:
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(0)
+      utime.sleep(pausa)
+  #Mantener todas encendidas
+  for j in range (2):
+    for i in todos:
+      i.value(1)
+      utime.sleep(pausa)
+      i.value(1)
+      utime.sleep(pausa)
+  for j in range (6):
+    for i in todos:
+      i.value(1)
+      utime.sleep(pausa_rapida)
+      i.value(0)
+      utime.sleep(pausa_rapida)
+    for i in reversed (todos):
+      i.value(1)
+      utime.sleep(pausa_rapida)
+      i.value(0)
+      utime.sleep(pausa_rapida)
+
+while True:
+  secuenciaLeds()
