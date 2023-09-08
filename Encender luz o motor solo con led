@@ -1,0 +1,27 @@
+from machine import Pin
+
+pin_pulsador_A = Pin(13, Pin.IN)
+pin_pulsador_B = Pin(12, Pin.IN)
+pin_pulsador_C = Pin(14, Pin.IN)
+
+motor_activado = False
+lampara_emergencia = False
+
+    estado_pulsador_A = pin_pulsador_A.value()
+    estado_pulsador_B = pin_pulsador_B.value()
+    estado_pulsador_C = pin_pulsador_C.value()
+
+while True:
+    if estado_pulsador_A and estado_pulsador_B and estado_pulsador_C:
+        motor_activado = True
+        lampara_emergencia = False
+    elif estado_pulsador_A and estado_pulsador_B or estado_pulsador_A and estado_pulsador_C or estado_pulsador_B and estado_pulsador_C:
+        motor_activado = False
+        lampara_emergencia = True
+    else:
+        motor_activado = False
+        lampara_emergencia = False
+
+    # Resultados
+    print("Motor activado:", motor_activado)
+    print("Lámpara de emergencia:", lampara_emergencia)
